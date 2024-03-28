@@ -1,8 +1,10 @@
-# main.py
 from lightning.pytorch.cli import LightningCLI
-
-# simple demo classes for your convenience
 from lightning.pytorch.demos.boring_classes import DemoModel, BoringDataModule
+from data.mnist import MNISTDataModule
+from model.classifier import Classifier
+import torch
+
+torch.set_float32_matmul_precision('high')
 
 
 def cli_main():
