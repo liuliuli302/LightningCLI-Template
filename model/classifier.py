@@ -1,7 +1,7 @@
 import torch
-from torch import nn
 from lightning.pytorch import LightningModule
 from model.layers.basic_linear_layer import BasicLinearModel
+from torch.nn import functional as F
 
 
 class Classifier(LightningModule):
@@ -9,7 +9,6 @@ class Classifier(LightningModule):
         super().__init__()
         self.save_hyperparameters()
         self.model = BasicLinearModel(in_features, out_features, hidden_dim)
-        self.criterion = nn.CrossEntropyLoss()
 
     def forward(self, x):
         return self.model(x)
@@ -17,13 +16,13 @@ class Classifier(LightningModule):
     def training_step(self, batch, batch_idx):
         inputs, target = batch
         output = self(inputs)
-        loss = self.criterion(output, target.view(-1))
+        loss = F.cross_entropy(output, target.view(-1))
         return loss
 
     def validation_step(self, batch, batch_idx):
         inputs, target = batch
         output = self(inputs)
-        loss = self.criterion(output, target.view(-1))
+        loss = F.cross_entropy(output, target.view(-1))
         return loss
 
     def configure_optimizers(self):

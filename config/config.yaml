@@ -1,7 +1,7 @@
 # lightning.pytorch==2.2.1
 seed_everything: 20010602
 trainer:
-  max_epochs: 1000
+  max_epochs: 100
 model:
   in_features: 784
   hidden_dim: 512
@@ -9,6 +9,7 @@ model:
   lr: 1e-4
   T_max: 100
 data:
-  data_dir: ./data
-  batch_size: 64
-  num_workers: 8
+  data_dir: ./data_source
+  batch_size: 32
+  num_workers: 7
+  val_size: 5000
