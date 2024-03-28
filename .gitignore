@@ -1,2 +1,2 @@
-.idea/
-lightning_logs/
+.idea/*
+lightning_logs/*
