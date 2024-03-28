@@ -17,12 +17,14 @@ class Classifier(LightningModule):
         inputs, target = batch
         output = self(inputs)
         loss = F.cross_entropy(output, target.view(-1))
+        self.log('train_loss', loss, prog_bar=True)
         return loss
 
     def validation_step(self, batch, batch_idx):
         inputs, target = batch
         output = self(inputs)
         loss = F.cross_entropy(output, target.view(-1))
+        self.log('val_loss', loss)
         return loss
 
     def configure_optimizers(self):
