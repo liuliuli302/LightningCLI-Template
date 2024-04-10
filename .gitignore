@@ -1,3 +1,5 @@
 .idea/
+# Ingore the Lightning Logs
 lightning_logs/
+# Ingore the Dataset
 data_source/
